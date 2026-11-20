@@ -1,0 +1,7 @@
+# The Zeus package (https://github.com/OmniOMR/zeus) provides the Zeus dataset format, the MusiCorpus conversion
+# (`zeus musicorpus`), the pickling (`zeus pickle`), the SER metric and the LMX -> MusicXML decoding.
+# It pins TensorFlow 2.12, and so Python 3.10, but none of the modules used here imports TensorFlow, so it is
+# installed without its dependencies (the ones needed are in pyproject.toml):
+#
+#   pip install --no-deps --ignore-requires-python -r requirements-zeus.txt
+zeus @ git+https://github.com/OmniOMR/zeus.git@c8569eb1c8b5bb24511de6a5e53ef2450de6206c

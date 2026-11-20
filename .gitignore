@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.ruff_cache/
+
+# Data, results and models, never committed (models are released as GitHub release assets)
+datasets/
+experiment_results*/
+logs/
+models/
+*.pickle
+*.pt

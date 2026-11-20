@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hannoree"
+# Derived from the git tags at build time (v1.2.0 -> 1.2.0); see "Releasing a new model" in the README.
+dynamic = ["version"]
+description = "Staff-level optical music recognition with a fine-tuned MuSViT encoder and a Zeus decoder"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    # PyTorch 2.6 or newer: recent transformers releases disable PyTorch below it
+    "torch>=2.6",
+    "torchvision>=0.21",
+    # transformers 5 is needed for --stave-width aspect (a ViTModel taking an attention_mask)
+    "transformers>=4.40",
+    "huggingface_hub",
+    "numpy",
+    "Pillow",
+    # The dependencies of the Zeus modules used here (requirements-zeus.txt), which is installed without its own,
+    # since it pins TensorFlow 2.12 and Python 3.10
+    "tqdm",
+    "pyyaml",
+    "levenshtein",
+    "linearized-musicxml @ git+https://github.com/OMR-Research/lmx.git@87fca1c38bda83bc032596ab00af28412f92941d",
+]
+
+[project.scripts]
+hannoree = "hannoree.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/OmniOMR/HanNoReE"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hannoree"]
+
+[tool.ruff]
+line-length = 120
